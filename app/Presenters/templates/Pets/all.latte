@@ -33,11 +33,11 @@
 					{/if}
 				{/foreach}
 				</div>
-				{* uncomment this when new field is present*}
+				{* uncomment this when new field is present
 				<div class="petCell"><label>Age:</label>
 					{isset($pet->age) ? $pet->age : 'N/A'}
 				</div>
-				
+				*}
 			</div>
 			<div class="petControls">
 				<a n:href="Pets:delete $pet->id" onClick="return confirm('Are you sure you want to delete {$pet->name} ?')">Delete</a>

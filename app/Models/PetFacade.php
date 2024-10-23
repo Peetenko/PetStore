@@ -47,8 +47,7 @@ final class PetFacade{
         }  
     }
 
-    function readDatabase($filename) 
-    {
+    function readDatabase($filename){
         // read the XML database of Pets
         $data = file_get_contents($filename);
         $parser = xml_parser_create();
@@ -56,7 +55,7 @@ final class PetFacade{
         xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
         xml_parse_into_struct($parser, $data, $values, $tags);
         xml_parser_free($parser);
-
+        
         // loop through the structures
         foreach ($tags as $key=>$val) {
             if ($key == "pet") {
@@ -76,13 +75,13 @@ final class PetFacade{
         return $tdb;
     }
 
-    function parsePets($pvalues) 
-    {
+    function parsePets($pvalues){
         for ($i=0; $i < count($pvalues); $i++) {
             $pets[$pvalues[$i]["tag"]] = $pvalues[$i]["value"];
         }
         
         return new PetDB($pets);
+        
     }
     
 

@@ -79,8 +79,8 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
             ->addRule($form::Image, 'Avatar must be JPEG, PNG, GIF, WebP or AVIF')
             ->addRule($form::MaxFileSize, 'Maximum size is 1 MB', 1024 * 1024);
         $form->addSelect('status', 'Search status:', $status);
-		//in case of new field uncomment this and change according to your needs
-		$form->addText('age','Age:');
+		//in case of new field like age uncomment this and change according to your needs
+		//$form->addText('age','Age:');
 		$form->addSubmit('send', 'Add Pet');
 		$form->onSuccess[] = [$this, 'formSucceeded'];
 		return $form;
@@ -100,7 +100,8 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
             ->addRule($form::Image, 'Avatar must be JPEG, PNG, GIF, WebP or AVIF')
             ->addRule($form::MaxFileSize, 'Maximum size is 1 MB', 1024 * 1024);
         $form->addSelect('status', 'Status:', $status);
-		$form->addText('age','Age:');
+		//in case of new field like age uncomment this and change according to your needs
+		//$form->addText('age','Age:');
 		$form->setDefaults($this->pet);
 		$form->addSubmit('edit', 'Edit Pet');
 		$form->onSuccess[] = [$this, 'updateFormSucceeded'];
@@ -127,18 +128,20 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
 		//get last id and set new id for pet
 		$lastPet = $file->lastElementChild->childNodes->length - 1;
 		$newPetId = $file->lastElementChild->childNodes[$lastPet]->childNodes[0]->nodeValue + 1;
+		$image = $data['image']->hasFile() ? rand(1,1000) . $data['image']->name : 'No image';
 		$root = $file->documentElement;
 		$newPet = $file->createElement('pet');
 		$newPet->appendChild($file->createElement('id', strval($newPetId)));
 		$newPet->appendChild($file->createElement('name', $data->name));
 		$newPet->appendChild($file->createElement('category',strval($data->category)));
-		$newPet->appendChild($file->createElement('image', $data['image']->hasFile() ? $data['image']->name : 'No image' ));
+		$newPet->appendChild($file->createElement('image', $image));
 		$newPet->appendChild($file->createElement('status', strval($data->status)));
-		$newPet->appendChild($file->createElement('age', strval($data->age)));
+		//in case of new field like age uncomment this and change according to your needs
+		//$newPet->appendChild($file->createElement('age', strval($data->age)));
 		$root->appendChild($newPet);
 		$file->save($xmlPath);
 		//save image if exists
-		$data['image']->hasFile() ? $data['image']->move('../www/images/'. $data['image']->name) : '';
+		$data['image']->hasFile() ? $data['image']->move('../www/images/'. $image ) : '';
 		
 		$this->flashMessage('Pet ' . $data->name . ' Added');
 		$this->redirect('Pets:all');
@@ -149,6 +152,7 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
 		$file = PetDB::getDB();
 		$xmlPath = PetDB::getDBpath();
 		$root = $file->documentElement;
+		$image = $data['image']->hasFile() ? rand(1,1000) . $data['image']->name : 'No image';
 		foreach($root->childNodes as $pet){
 			if($pet->childNodes[0]->nodeValue == $this->pet->id){
 				foreach($pet->childNodes as $attr){
@@ -162,16 +166,17 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
 							break;
 						case 'image':
 							if($data['image']->hasFile()){
-								$attr->nodeValue = $data['image']->name;
-								$data['image']->move('../www/images/'. $data['image']->name);
+								$attr->nodeValue = $image;
+								$data['image']->move('../www/images/'. $image);
 							}
 							break;
 						case 'status':
 							$attr->nodeValue = strval($data['status']);
 							break;
-						case 'age':
+						//uncomment case for age or any new field to save data
+						/*case 'age':
 							$attr->nodeValue = strval($data['age']);
-							break;
+							break;*/
 						
 					}
 					$file->save($xmlPath);
@@ -205,31 +210,19 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
 			
 			case '1':
 				# search by status
-				$file = PetDB::getDB();
-				$root = $file->documentElement;
-				$petArray = [];
-				foreach($root->childNodes as $pet){
-					foreach($pet->childNodes as $attr){
-						if($attr->nodeName == 'status' && $attr->nodeValue == $status){
-							array_push($petArray, $pet);
-						}
+				$allPets = $this->facade->getAllPets();
+				$pets = [];
+				foreach($allPets as $pet){
+					if($pet->status == $status){
+						$pets[] = $pet;
 					}
 				}
-				
-				$pets = [];
-				foreach($petArray as $pet){
-					$petRow = [];
-					foreach($pet->childNodes as $attr){
-						$petRow[$attr->nodeName] = $attr->nodeValue ;
-					};
-					array_push($pets,$petRow);
-				}
-				
 				if(!$pets){
 					$this->flashMessage('Pet with this status does not exist');
 				}else{
 					$this->flashMessage('Successfully showed pet');
 				}
+
 				$this->template->pets = $pets;
 				$this->redirect('Pets:find',[$pets]);
 				break;
