@@ -6,6 +6,7 @@
     <category>2</category>
     <image>cat.jpg</image>
     <status>1</status>
+    <age>1</age>
   </pet>
   <pet>
     <id>2</id>
@@ -13,6 +14,7 @@
     <category>3</category>
     <image>fish.jpg</image>
     <status>1</status>
+    <age>2</age>
   </pet>
   <pet>
     <id>3</id>
@@ -20,6 +22,7 @@
     <category>1</category>
     <image>dog.jpg</image>
     <status>1</status>
+    <age>3</age>
   </pet>
   <pet>
     <id>4</id>
@@ -27,20 +30,6 @@
     <category>4</category>
     <image>turtle.jpg</image>
     <status>2</status>
-  </pet>
-  <pet>
-    <id>5</id>
-    <name>Palcacek</name>
-    <category>2</category>
-    <image>cat.jpg</image>
-    <status>0</status>
-  </pet>
-  <pet>
-    <id>6</id>
-    <name>Lucky</name>
-    <category>5</category>
-    <image>No image</image>
-    <status>0</status>
-    <age>11</age>
+    <age>4</age>
   </pet>
 </petstore>

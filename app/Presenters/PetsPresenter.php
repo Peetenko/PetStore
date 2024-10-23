@@ -7,8 +7,6 @@ namespace App\Presenters;
 use Nette;
 use Nette\Application\UI\Form;
 use App\Models\PetFacade;
-use DOMDocument;
-use Nette\ComponentModel\IComponent;
 use PetDB;
 
 

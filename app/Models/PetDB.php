@@ -1,13 +1,7 @@
 <?php
 
-
-
 class PetDB {
-    /*var $name; 
-    var $category; 
-    var $image;  
-    var $status;  */
-
+   
     function __construct ($aa) 
     {
         foreach ($aa as $k=>$v)

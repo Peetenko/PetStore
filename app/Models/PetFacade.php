@@ -1,11 +1,9 @@
 <?php
 namespace App\Models;
-use Xquery;
 use Nette\Database\Explorer;
 use Nette\Utils\FileSystem;
 use PetDB;
 use Tracy\Debugger;
-use DOMDocument;
 
 
 final class PetFacade{
