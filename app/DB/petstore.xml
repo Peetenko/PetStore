@@ -4,46 +4,28 @@
     <id>1</id>
     <name>Kitty</name>
     <category>2</category>
-    <image>cat.jpg</image>
+    <image>700cat.jpg</image>
     <status>1</status>
-    <age>1</age>
   </pet>
   <pet>
     <id>2</id>
     <name>Nemo</name>
     <category>3</category>
-    <image>fish.jpg</image>
+    <image>918fish.jpg</image>
     <status>0</status>
-    <age>2</age>
   </pet>
   <pet>
     <id>3</id>
     <name>Jack</name>
     <category>1</category>
-    <image>dog.jpg</image>
+    <image>623dog.jpg</image>
     <status>1</status>
-    <age>3</age>
   </pet>
   <pet>
     <id>4</id>
     <name>Leonardo</name>
     <category>4</category>
-    <image>turtle.jpg</image>
+    <image>376turtle.jpg</image>
     <status>2</status>
-    <age>4</age>
-  </pet>
-  <pet>
-    <id>5</id>
-    <name>New Pet</name>
-    <category>1</category>
-    <image>333dog.jpg</image>
-    <status>0</status>
-  </pet>
-  <pet>
-    <id>6</id>
-    <name>Rocky</name>
-    <category>1</category>
-    <image>814dog.jpg</image>
-    <status>0</status>
   </pet>
 </petstore>

@@ -27,9 +27,10 @@
 					{/if}
 				{/foreach}
 				</div>
-                <div class="petCell"><label>Age:</label>
+				{* Uncomment this div when new field added to show it*}
+                {*<div class="petCell"><label>Age:</label>
 					{isset($pet->age) ? $pet->age : 'N/A'}
-				</div>
+				</div>*}
 			</div>
 			<div class="petControls">
 				<a n:href="Pets:delete $pet['id']">Delete</a>

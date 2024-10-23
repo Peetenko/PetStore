@@ -140,6 +140,7 @@ final class PetsPresenter extends Nette\Application\UI\Presenter
 		//$newPet->appendChild($file->createElement('age', strval($data->age)));
 		$root->appendChild($newPet);
 		$file->save($xmlPath);
+		
 		//save image if exists
 		$data['image']->hasFile() ? $data['image']->move('../www/images/'. $image ) : '';
 		
