@@ -1,0 +1,50 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+
+<div id="content">
+
+	<h2>These are all our Pets</h2>
+
+	<h3>List of Pets</h3>
+	<div class="petList">
+	{foreach $pets as $pet}
+		<div class="petRow">
+			<div class="image">
+				{if $pet->image == 'No image'}
+					<span class="missingImg">Image missing, add one using edit</span>
+				{else}
+					<img class="petImage" src="{$baseUrl}/images/{$pet->image}">
+				{/if}
+			</div>
+			<div class="petDetails">
+				<div class="petCell"><label>Name:</label>{$pet->name}</div>
+				<div class="petCell"><label>Category:</label>
+				{foreach $categories as $key => $value}
+					{if $key == $pet->category}
+						{$value}
+					{/if}
+				{/foreach}
+				</div>
+				<div class="petCell"><label>Status:</label>
+				{foreach $statuses as $key => $value}
+					{if $key == $pet->status}
+						{$value}
+					{/if}
+				{/foreach}
+				</div>
+				{* uncomment this when new field is present*}
+				<div class="petCell"><label>Age:</label>
+					{isset($pet->age) ? $pet->age : 'N/A'}
+				</div>
+				
+			</div>
+			<div class="petControls">
+				<a n:href="Pets:delete $pet->id" onClick="return confirm('Are you sure you want to delete {$pet->name} ?')">Delete</a>
+				<a n:href="Pets:edit $pet->id">Edit</a>
+			</div>
+		</div>
+    {/foreach}
+	</div>
+</div>
+

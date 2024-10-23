@@ -1,0 +1,40 @@
+{block content}
+
+<div id="content">
+
+	<h2>Welcome to the Pet Store</h2>
+    {control searchPet}
+    <div class="petList">
+    {if isset($pet)}
+	
+		<div class="petRow">
+			<div class="image">
+				<img class="petImage" src="{$baseUrl}/images/{$pet->image}">
+			</div>
+			<div class="petDetails">
+				<div class="petCell"><label>Name:</label>{$pet->name}</div>
+				<div class="petCell"><label>Category:</label>
+				{foreach $categories as $key => $value}
+					{if $key == $pet->category}
+						{$value}
+					{/if}
+				{/foreach}
+				</div>
+				<div class="petCell"><label>Status:</label>
+				{foreach $statuses as $key => $value}
+					{if $key == $pet->status}
+						{$value}
+					{/if}
+				{/foreach}
+				</div>
+			</div>
+			<div class="petControls">
+				<a n:href="Pets:delete $pet->id">Delete</a>
+				<a n:href="Pets:edit $pet->id">Edit</a>
+			</div>
+		</div>
+    
+    {/if}
+	</div>
+
+</div>

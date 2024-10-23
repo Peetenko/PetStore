@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<petstore>
+  <pet>
+    <id>1</id>
+    <name>Kitty</name>
+    <category>2</category>
+    <image>cat.jpg</image>
+    <status>1</status>
+  </pet>
+  <pet>
+    <id>2</id>
+    <name>Nemo</name>
+    <category>3</category>
+    <image>fish.jpg</image>
+    <status>1</status>
+  </pet>
+  <pet>
+    <id>3</id>
+    <name>Jack</name>
+    <category>1</category>
+    <image>dog.jpg</image>
+    <status>1</status>
+  </pet>
+  <pet>
+    <id>4</id>
+    <name>Leonardo</name>
+    <category>4</category>
+    <image>turtle.jpg</image>
+    <status>2</status>
+  </pet>
+  <pet>
+    <id>5</id>
+    <name>Palcacek</name>
+    <category>2</category>
+    <image>cat.jpg</image>
+    <status>0</status>
+  </pet>
+  <pet>
+    <id>6</id>
+    <name>Lucky</name>
+    <category>5</category>
+    <image>No image</image>
+    <status>0</status>
+    <age>11</age>
+  </pet>
+</petstore>

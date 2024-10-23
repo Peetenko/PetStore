@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+</head>
+
+<body>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+	<div id="banner">
+		<div class="nav">
+			<a n:href="Pets:home">Home</a>
+			<a n:href="Pets:add">Add Pet</a>
+			<a n:href="Pets:all">All Pets</a>
+		</div>
+		<h1 n:block=title>Pet Store</h1>
+	</div>
+	{include content}
+
+	{block scripts}
+	<script src="https://unpkg.com/nette-forms@3/src/assets/netteForms.js"></script>
+	<script>
+		function flashDisappear(){
+			const flashMessage = document.querySelector('.flash');
+			flashMessage.style.display = 'none';
+		}
+
+		setTimeout(()=> {
+			flashDisappear();
+		}, "5000");
+
+		function fnSearchToggle(){
+			const searchBy = document.querySelector('#frm-searchPet-searchBy');
+			const searchId = document.querySelector('#frm-searchPet-searchValue');
+			const searchStatus = document.querySelector('#frm-searchPet-status');
+
+			searchBy.value == 0 ? 
+			(searchStatus.disabled = true, searchId.disabled = false) : 
+			(searchStatus.disabled = false, searchId.style.display = true);
+    	}
+
+	</script>
+
+	{/block}
+	<style>
+		body { 
+			background: grey; 
+			color: #333; 
+			margin: 2em auto; 
+			padding: 0 .5em; 
+			max-width: 600px; 
+			min-width: 320px;
+		}
+	
+		html { 
+			font: normal 16px/1.1 Arial, 
+			"New York CE", utopia, serif; 
+			color: #666; 
+			-webkit-text-stroke: 1px rgba(0,0,0,0); 
+			overflow-y: scroll;
+		}
+
+		th { 
+			text-align: left;
+		}
+
+		td {
+			padding: 0px 10px 5px 10px;
+		}
+
+		select {
+			width: 100%;
+		}
+		
+	 	.nav{
+			width: 100%;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+		}
+
+		#banner {
+			background: rgb(2,0,36);
+			background: linear-gradient(146deg, rgba(2,0,36,1) 0%,
+			rgba(110,56,6,1) 47%, rgba(255,164,0,1) 100%);
+			border-radius: 10px 10px 0px 0px;
+		}
+
+		a{
+			text-decoration: none;
+			align-self: center;
+			color: #d16d08;
+			padding: 5px;
+			font-weight: 300;
+			font-size: 10pt;
+		}
+
+		a:hover, a:active, a:focus {
+			background-color: Brown;
+			border-radius: 5px;
+			padding: 5px;
+			text-decoration: none; color: white;
+		}
+
+		input,select {
+			height: 40px;
+			width: 100%;
+			border-radius: 10px;
+			border: 1px solid lightgrey;
+			display: flex;
+			flex: 1 1 100%;
+		}
+		input[type="submit"]{
+			background: orange;
+		}
+
+		table{
+			width: 100%;
+		}
+
+		h1 { font: inherit; color: white; 
+			font-size: 50px; line-height: 121px; 
+			margin: 0; padding-left: 4% ; 
+			background: url(https://files.nette.org/images/logo-nette@2.png) no-repeat 95%; 
+			background-size: 130px auto; 
+			text-shadow: 1px 1px 0 rgba(0, 0, 0, .9); 
+		}
+
+		h2 { font: inherit; padding: 1.2em 0; margin: 0; }
+
+		@media (max-width: 600px) {
+			h1 { background: none; font-size: 40px; }
+		}
+
+		#content { background: white; border: 1px solid #eff4f7; border-radius: 0 0 12px 12px; padding: 10px 4%; overflow: hidden; }
+
+		
+
+		.netteFormsModal{
+			border: 0px;
+			border-radius:10px;
+		}
+
+		.petList{
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			margin: 10px 0px;
+		}
+
+		.petRow{
+			display: flex;
+			flex-direction: row;
+			border-radius: 10px;
+			padding:10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		.petCell{
+			padding: 10px;
+			border-radius: 10px;
+			border: 0px;
+			display:flex;
+		}
+
+		.petImage{
+			display: block;
+			width: 100%;
+			border-radius: 10px;
+		}
+
+		.image{
+			display: flex;
+			width: 30%;
+			border-radius: 10px;
+		}
+
+		.petDetails{
+			width: 60%;
+		}
+
+		.petControls{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		label {
+			padding-right: 10px;
+		}
+
+		.flash {
+			display: flex;
+			flex: 1 1 100%;
+			padding: 10px;
+			justify-content: center;
+			border-radius: 10px;
+			
+		}
+
+		.missingImg{
+			text-align:center;
+			text-wrap: wrap;
+			margin: 20px;
+		}
+
+	</style>
+</body>
+</html>
